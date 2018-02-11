@@ -20,27 +20,28 @@ inquirer.prompt([{
     message: "What do you want to do?",
     choices: ['my-tweets', 'spotify-this-song', 'movie-this', 'do-what-it-says']
   }])
+
   // Store the choice in a variable called userChoice
   .then(function (userChoice) {
     // This is where liri does one of 4 things
     // if user chooses my-tweets...
     if (userChoice.command === 'my-tweets') {
       // twitter parameters
-      var parameters = {
+      var params = {
         screen_name: 'TheWolfofWaltonWay',
         count: 10
       };
       // Get request for my last 10 tweets
-      client.get('statuses/user_timeline', parameters, function (error, tweets, response) {
+      client.get('statuses/user_timeline', params, function (error, tweets, response) {
         if (!error) {
           console.log('An unexpected error occurred' + error);
         } else {
-          console.log("These are my last 10 tweets");
-          for (var t = 0; t < tweets.length; t++) {
+          // console.log("These are my last 10 tweets");
+          // for (var t = 0; t < tweets.length; t++) {
             console.log('--------------------------');
             console.log(tweets[t].text);
             console.log('--------------------------');
-          };
+          // };
         };
       });
     }
