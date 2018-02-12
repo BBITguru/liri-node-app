@@ -27,13 +27,13 @@ inquirer.prompt([{
     if (userChoice.command === 'my-tweets') {
       // twitter parameters
       var parameters = {
-        screen_name: 'TheWolfofWaltonWay',
+        screen_name: 'WolfofWaltonWay',
         count: 10
       };
       // Get request for my last 10 tweets
       client.get('statuses/user_timeline', parameters, function (error, tweets, response) {
-        if (!error) {
-          console.log('An unexpected error occurred' + error);
+        if (error) {
+          console.log('An unexpected error occurred' + JSON.stringify(error));
         } else {
           console.log("These are my last 10 tweets");
           for (var t = 0; t < tweets.length; t++) {
@@ -60,7 +60,7 @@ inquirer.prompt([{
           if (err) {
             return console.log('Spotify Error occurred: ' + err);
           }
-          console.log(data);
+          console.log(data.tracks.items[0]);
         });
       })
     }
